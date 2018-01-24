@@ -125,4 +125,5 @@
   "w" 'cljr-rename-symbol
   "R" 'eval-show-clean-repl
   "t" 'cider-test-run-test
-  "T" 'cider-test-run-tests)
+  "T" 'cider-test-run-tests
+  "H" 'clojure-cheatsheet)
