@@ -74,13 +74,15 @@
 
 (load-theme 'cyberpunk t)
 
+;; Pretty brackets
 (require 'rainbow-delimiters)
-
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
+;; fixed brackets, barf spit etc
 (require 'paredit)
 (add-hook 'clojure-mode-hook #'paredit-mode)
 
+;; Otherwise you get a stupid menu that you can't click because it's a terminal
 (menu-bar-mode -1)
 
 ;; Does autocomplete stuff in a popup in the source. Works with CIDER
@@ -94,13 +96,16 @@
 ;; Makes things auto coplete
 (require 'icomplete)
 
-;; 
+;; Does fuzzy file matching etc. Pretty cool. Bound to leader F
 (require 'find-file-in-project)
 
+;; Highlight the matching paren from the one we are on
 (show-paren-mode)
 
+;; Support CamelCase for foward word etc. Good for occasional java interop
 (add-hook 'clojure-mode-hook #'subword-mode)
 
+;; Bind things with evil goodness
 (evil-leader/set-key
   "f" 'cljr-clean-ns
   "F" 'find-file-in-project
