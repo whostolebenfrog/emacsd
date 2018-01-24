@@ -47,7 +47,7 @@
 ;; Show the repl in a popwin (popup) buffer that can be closed with ctrl-g
 (defun popup-repl ()
   (interactive)
-  (popwin:popup-buffer "*cider-repl 127.0.0.1*"))
+  (popwin:popup-buffer "*cider-repl localhost*"))
 
 ;; Default the repl to opening in said popwin buffer
 (push '("*cider-repl localhost*" :position bottom) popwin:special-display-config)
@@ -57,10 +57,8 @@
 
 (defun eval-show-clean-repl ()
   (interactive)
-  (cider-find-and-clear-repl-buffer)
-  (sleep-for 5)
-  (cider-eval-last-sexp)
-  (popup-repl))
+  (popup-repl)
+  (cider-repl-clear-buffer))
 
 ;; Jump between more matching things - probably needs updating...
 (require 'evil-matchit)
@@ -110,20 +108,27 @@
 ;; Support CamelCase for foward word etc. Good for occasional java interop
 (add-hook 'clojure-mode-hook #'subword-mode)
 
+;; Clj refactor support
+(require 'clj-refactor)
+(defun my-clojure-mode-hook ()
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1) ; for adding require/use/import statements
+  ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
+(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
+
 ;; Bind things with evil goodness
 (evil-leader/set-key
   "f" 'cljr-clean-ns
+  "S" 'clojure-sort-ns
   "F" 'find-file-in-project
-  "c" 'cljr-cycle-coll
   "q" 'cider-connect
   "u" 'cljr-find-usages
-  "p" 'cljr-sort-project-dependencies
   "r" 'popup-repl
+  "R" 'eval-show-clean-repl
   "s" 'ispell-word
   "j" 'cider-find-var
-  "z" 'cider-find-and-clear-repl-buffer
   "w" 'cljr-rename-symbol
-  "R" 'eval-show-clean-repl
   "t" 'cider-test-run-test
   "T" 'cider-test-run-tests
   "H" 'clojure-cheatsheet)
