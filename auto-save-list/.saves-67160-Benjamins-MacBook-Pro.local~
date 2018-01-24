@@ -1,7 +1,7 @@
-/Users/ben/.emacs.d/init.el
-/Users/ben/.emacs.d/#init.el#
 /Users/ben/workspace/neo4j-ingester/src/com/atomist/ingester/neo4j_ingester/model.clj
 /Users/ben/workspace/neo4j-ingester/src/com/atomist/ingester/neo4j_ingester/#model.clj#
+/Users/ben/.emacs.d/init.el
+/Users/ben/.emacs.d/#init.el#
 /Users/ben/workspace/neo4j-ingester/resources/cypher/onCommitTouchesIssue.cypher
 /Users/ben/workspace/neo4j-ingester/resources/cypher/#onCommitTouchesIssue.cypher#
 /Users/ben/.emacs.d/init.

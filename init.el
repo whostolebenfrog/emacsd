@@ -10,9 +10,11 @@
                     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
+;; Vim mode
 (require 'evil)
 (evil-mode 1)
 
+;; Not sure why I'm loading these like this but it's kind of handy
 (add-to-list 'load-path "~/.emacs.d/small-plugins")
 
 ;; evil numbers (inc and dec)
@@ -27,9 +29,10 @@
 ;; goto last change e.g. `.
 (require 'goto-last-change)
 
+;; not sure why I set this...
 (put 'downcase-region 'disabled nil)
 
-;; evil leader
+;; evil leader set to ,
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
@@ -37,6 +40,7 @@
 ;; don't use prefix notation when formatting ns.
 (setq cljr-favor-prefix-notation nil)
 
+;; Popup windows - handy for a quick REPL popup
 (require 'popwin)
 (popwin-mode 1)
 
@@ -51,7 +55,6 @@
 (setq-default
   evil-symbol-word-search t)
 
-;;
 (defun eval-show-clean-repl ()
   (interactive)
   (cider-find-and-clear-repl-buffer)
@@ -59,9 +62,11 @@
   (cider-eval-last-sexp)
   (popup-repl))
 
+;; Jump between more matching things - probably needs updating...
 (require 'evil-matchit)
 (global-evil-matchit-mode 1)
 
+;; Not sure I will still need these. I think find-file-in-project is probably what I need
 (setq-default abbrev-mode t)
 (define-abbrev global-abbrev-table "cc" "~/workspace/neo4j-ingester/resources/cypher")
 (define-abbrev global-abbrev-table "ss" "~/workspace/neo4j-ingester/src/com/atomist/ingester/neo4j_ingester")
