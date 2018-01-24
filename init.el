@@ -130,5 +130,5 @@
   "j" 'cider-find-var
   "w" 'cljr-rename-symbol
   "t" 'cider-test-run-test
-  "T" 'cider-test-run-tests
+  "T" 'cider-test-run-ns-tests
   "H" 'clojure-cheatsheet)
